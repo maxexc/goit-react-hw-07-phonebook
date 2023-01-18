@@ -10,8 +10,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { filterContacts, getFilterResults } from 'redux/filterSlice';
 // import { addContact, deleteContact, getContacts } from 'redux/contactsSlice';
 
-import { addContact, deleteContact, fetchContacts } from 'redux/operations';
+// import { addContact, deleteContact, fetchContacts } from 'redux/operations';
 import { getContacts } from 'redux/contactsSlice';
+import { addContact, deleteContact, fetchContacts } from 'redux/operations';
 
 
 const App = () => {
