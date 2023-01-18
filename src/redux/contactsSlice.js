@@ -1,7 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
+// import { addContact, deleteContact, fetchContacts } from './operations';
 import { nanoid } from "nanoid";
-import  ContactsData from 'components/ContactsData.json'
 import { toast } from "react-toastify";
+// 
+import  ContactsData from 'components/ContactsData.json'
+
+
 
 
 
