@@ -23,7 +23,7 @@ import Loader from 'components/Loader/Loader';
 
 const App = () => {
   const dispatch = useDispatch(); 
-  const { contacts, isLoading, } = useSelector(getContacts);
+  const { contacts, isLoading, error } = useSelector(getContacts);
   const filter = useSelector(getFilterResults); 
   console.log(contacts); 
   
@@ -73,6 +73,8 @@ const getVisibleContacts = () => {
           contactsFiltred={getVisibleContacts()}
           handleDelete={handleDelete}
         ></Contacts>
+        {error && <h1 style={{ color: "orangered" }}>{error}</h1>}
+        {contacts.length === 0 && <p style={{ color: "orangered", marginTop: "14px" }}>No contacts in Phonebook</p>}
         <ToastContainer autoClose={2000} position="top-right" theme="light" />
       </Container>
   )
