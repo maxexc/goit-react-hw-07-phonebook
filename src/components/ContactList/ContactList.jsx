@@ -16,7 +16,6 @@ export const Contacts = ({ contactsFiltred, handleDelete }) => (
         <ContactItem key={id}>
           {name}: {number}
           <ContactBtn type="button" onClick={() => handleDelete(id)}>
-          {/* <ContactBtn type="button" onClick={() => handleDelete(contact.id)}> */}
             Delete
           </ContactBtn>
         </ContactItem>

@@ -1,9 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { addContact, deleteContact, fetchContacts } from './operations';
-// import { nanoid } from "nanoid";
-// import { toast } from "react-toastify";
-//
-// import  ContactsData from 'components/ContactsData.json'
 
 
 const handlePending = state => {
@@ -57,9 +53,5 @@ const contactsSlice = createSlice({
         [deleteContact.rejected]: handleRejected,
   },
 });
-  
-// export const { addContact, deleteContact } = contactsSlise.actions;
+
 export const contactsReducer = contactsSlice.reducer;
-
-// export const getContacts = state => state.contacts;
-
