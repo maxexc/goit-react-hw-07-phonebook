@@ -21,23 +21,26 @@ import { Container } from './App.styled';
 
 
 const App = () => {
-  const dispatch = useDispatch();  
- 
-  const { contacts, isLoading } = useSelector(getContacts);
-  const filter = useSelector(getFilterResults);    
+  const dispatch = useDispatch(); 
+  const { contacts, isLoading, error } = useSelector(getContacts);
+  const filter = useSelector(getFilterResults); 
+  console.log(contacts); 
+  
+  useEffect(() => {
+    dispatch(fetchContacts())
+  }, [dispatch])
   
 
-  useEffect(() => {
-        dispatch(fetchContacts());
-        console.log('test');
-  }, [dispatch]);
-  console.log(getContacts);
-  console.log(contacts); 
+  // useEffect(() => {
+  //       dispatch(fetchContacts());
+  //       console.log('test');
+  // }, [dispatch]);
+    
   //   window.localStorage.setItem('contacts', JSON.stringify(contacts));
   // }, [contacts])
 
-  const formSubmitHandler = (name, phone) => { 
-    dispatch(addContact(name, phone));
+  const formSubmitHandler = (name, number) => { 
+    dispatch(addContact(name, number));
   }
   
   const handleDelete = item => {
@@ -65,6 +68,7 @@ const getVisibleContacts = () => {
           value={filter}
           onFilter={changeFilter} />
         <Contacts
+          // contactsFiltred={contacts}
           contactsFiltred={getVisibleContacts()}
           handleDelete={handleDelete}
         ></Contacts>

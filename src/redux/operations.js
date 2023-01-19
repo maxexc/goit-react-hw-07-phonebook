@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-axios.defaults.baseURL = 'https://63b07a40f9a53fa2026a1adb.mockapi.io';
+axios.defaults.baseURL = 'https://63c7ec7e5c0760f69ac10ab9.mockapi.io';
 
 export const fetchContacts = createAsyncThunk(
   'contacts/fetchAll',
@@ -10,7 +10,10 @@ export const fetchContacts = createAsyncThunk(
         const response = await axios.get('/contacts');
         console.log(response.data);
       return response.data;
+      // При успішному запиті повертаємо проміс із даними
     } catch (err) {
+      // При помилці запиту повертаємо проміс
+      // який буде відхилений з текстом помилки
       return thunkAPI.rejectWithValue(err.message);
     }
   }
