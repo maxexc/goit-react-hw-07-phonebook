@@ -3,8 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { addContact, deleteContact, fetchContacts} from 'redux/operations';
-import { getContacts } from 'redux/contactsSlice';
-import { filterContacts, getFilterResults } from 'redux/filterSlice';
+import { filterContacts } from 'redux/filterSlice';
+import { getContacts, getFilterResults } from 'redux/selectors';
 
 import { Contacts } from 'components/ContactList/ContactList';
 import Filter from 'components/Filter/Filter';
@@ -12,13 +12,6 @@ import PhonebookForm from 'components/PhonebookForm/PhonebookForm';
 
 import { Container } from './App.styled';
 import Loader from 'components/Loader/Loader';
-
-
-
-// import { addContact, deleteContact, getContacts } from 'redux/contactsSlice';
-
-// import { addContact, deleteContact, fetchContacts } from 'redux/operations';
-
 
 
 const App = () => {
@@ -29,32 +22,24 @@ const App = () => {
   
   useEffect(() => {
     dispatch(fetchContacts())
-  }, [dispatch])
-  
-
-  // useEffect(() => {
-  //       dispatch(fetchContacts());
-  //       console.log('test');
-  // }, [dispatch]);
-    
-  //   window.localStorage.setItem('contacts', JSON.stringify(contacts));
-  // }, [contacts])
+  }, [dispatch]);  
 
   const formSubmitHandler = (contact, number) => { 
     const repeatCheck = contacts.find(item => item.name.toLowerCase() === contact.name.toLowerCase());
     
-    if (repeatCheck ) {
-      toast.error(`Name ${contact.name} is alredy in contacts!`);
+    if (repeatCheck) {
+      toast.warn(`Name  ${contact.name}  is alredy in contacts!`);
       return;
     }
     dispatch(addContact(contact, number));
-    toast.success(`You have added ${contact.name} in contacts`);
+    toast.success(`You have added  ${contact.name}  in contacts`);
   }
 
   
   const handleDelete = item => {
     console.log(item);
-    dispatch(deleteContact(item));    
+    dispatch(deleteContact(item)); 
+    toast.info(`Contact is removed from List.`);   
    }
 
   const changeFilter = event => {
@@ -83,8 +68,8 @@ const getVisibleContacts = () => {
           handleDelete={handleDelete}
         ></Contacts>
         
-        {contacts.length === 0 && <p style={{ color: "orangered", marginTop: "14px" }}>No contacts in Phonebook</p>}
-        <ToastContainer autoClose={2000} position="top-right" theme="light" />
+        {contacts.length === 0 && <h4 style={{ color: "", marginTop: "14px" }}>No contacts in Phonebook</h4>}
+        <ToastContainer autoClose={2000} position="top-right" theme="dark" />
       </Container>
   )
 }
