@@ -39,7 +39,7 @@ const App = () => {
   const handleDelete = item => {
     console.log(item);
     dispatch(deleteContact(item)); 
-    toast.info(`Contact is removed from List.`);   
+    toast.error(`Contact is removed from List.`);   
    }
 
   const changeFilter = event => {
