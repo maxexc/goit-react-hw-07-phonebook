@@ -11,6 +11,7 @@ import Filter from 'components/Filter/Filter';
 import PhonebookForm from 'components/PhonebookForm/PhonebookForm';
 
 import { Container } from './App.styled';
+import Loader from 'components/Loader/Loader';
 
 
 
@@ -63,7 +64,7 @@ const getVisibleContacts = () => {
     return (
       <Container>
         <PhonebookForm onSubmit={formSubmitHandler} />
-        {isLoading && <p>Loading...</p>}
+        {isLoading && <Loader />}
         <Filter
           value={filter}
           onFilter={changeFilter} />
