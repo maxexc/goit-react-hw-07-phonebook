@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { ToastContainer } from 'react-toastify';
+import { toast, ToastContainer } from 'react-toastify';
 // import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { addContact, deleteContact, fetchContacts} from 'redux/operations';
@@ -41,14 +41,17 @@ const App = () => {
   //   window.localStorage.setItem('contacts', JSON.stringify(contacts));
   // }, [contacts])
 
-  const formSubmitHandler = (name, number) => { 
-    // const checkedContact = contactCheck(name);
-    // // if (state.find(({ name }) => name.toLowerCase() === action.payload.name.toLowerCase()))
-    // if (checkedContact !== undefined) {
-    //   return toast.error(`${name} is already in the contact list`);
-    // }
-    dispatch(addContact(name, number));
+  const formSubmitHandler = (contact, number) => { 
+    const repeatCheck = contacts.find(item => item.name.toLowerCase() === contact.name.toLowerCase());
+    
+    if (repeatCheck ) {
+      toast.error(`Name ${contact.name} is alredy in contacts!`);
+      return;
+    }
+    dispatch(addContact(contact, number));
+    toast.success(`You have added ${contact.name} in contacts`);
   }
+
   
   const handleDelete = item => {
     console.log(item);
