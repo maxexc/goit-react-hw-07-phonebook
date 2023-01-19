@@ -23,7 +23,7 @@ import Loader from 'components/Loader/Loader';
 
 const App = () => {
   const dispatch = useDispatch(); 
-  const { contacts, isLoading, error } = useSelector(getContacts);
+  const { contacts, isLoading, } = useSelector(getContacts);
   const filter = useSelector(getFilterResults); 
   console.log(contacts); 
   
