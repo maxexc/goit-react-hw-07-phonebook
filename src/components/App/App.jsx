@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { ToastContainer } from 'react-toastify';
+// import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { addContact, deleteContact, fetchContacts} from 'redux/operations';
 import { getContacts } from 'redux/contactsSlice';
@@ -41,6 +42,11 @@ const App = () => {
   // }, [contacts])
 
   const formSubmitHandler = (name, number) => { 
+    // const checkedContact = contactCheck(name);
+    // // if (state.find(({ name }) => name.toLowerCase() === action.payload.name.toLowerCase()))
+    // if (checkedContact !== undefined) {
+    //   return toast.error(`${name} is already in the contact list`);
+    // }
     dispatch(addContact(name, number));
   }
   
@@ -65,6 +71,7 @@ const getVisibleContacts = () => {
       <Container>
         <PhonebookForm onSubmit={formSubmitHandler} />
         {isLoading && <Loader />}
+        {error && <h1 style={{ color: "orangered" }}>{error}</h1>}
         <Filter
           value={filter}
           onFilter={changeFilter} />
@@ -73,7 +80,7 @@ const getVisibleContacts = () => {
           contactsFiltred={getVisibleContacts()}
           handleDelete={handleDelete}
         ></Contacts>
-        {error && <h1 style={{ color: "orangered" }}>{error}</h1>}
+        
         {contacts.length === 0 && <p style={{ color: "orangered", marginTop: "14px" }}>No contacts in Phonebook</p>}
         <ToastContainer autoClose={2000} position="top-right" theme="light" />
       </Container>
